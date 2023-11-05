@@ -254,3 +254,42 @@ transcriptions = np.argmax(predictions, axis=2)
 ```
 
 Please note that the code provided is a simplified example, and you may need to customize it based on your specific requirements and the dataset you are using.
+
+To create a sentiment analysis model, you can use the Natural Language Toolkit (NLTK) library in Python. NLTK provides various tools and datasets for natural language processing tasks, including sentiment analysis.
+
+Here's an example code snippet that demonstrates how to perform sentiment analysis using NLTK:
+
+```python
+import nltk
+from nltk.sentiment import SentimentIntensityAnalyzer
+
+def analyze_sentiment(text):
+    # Initialize the sentiment analyzer
+    sid = SentimentIntensityAnalyzer()
+
+    # Perform sentiment analysis
+    sentiment_scores = sid.polarity_scores(text)
+
+    # Determine the sentiment label based on the compound score
+    if sentiment_scores['compound'] >= 0.05:
+        sentiment = 'positive'
+    elif sentiment_scores['compound'] <= -0.05:
+        sentiment = 'negative'
+    else:
+        sentiment = 'neutral'
+
+    return sentiment
+
+# Example usage
+text = "I really enjoyed the movie. The acting was great!"
+sentiment = analyze_sentiment(text)
+print(sentiment)
+```
+
+This code uses the `SentimentIntensityAnalyzer` class from NLTK to calculate sentiment scores for the input text. The `polarity_scores` method returns a dictionary of sentiment scores, including a compound score that represents the overall sentiment.
+
+Based on the compound score, the code determines the sentiment label as either positive, negative, or neutral. You can modify the threshold values (0.05 and -0.05) to adjust the sensitivity of the sentiment classification.
+
+Please note that this code assumes you have NLTK and its required resources installed. You may need to download additional resources using the `nltk.download()` function before running the code.
+
+This code can be used as a starting point for building a sentiment analysis model. You can further enhance the model by training it on a larger dataset of labeled textual data in various languages.
